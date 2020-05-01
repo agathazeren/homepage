@@ -1,0 +1,43 @@
+{% set tabs =      ["Home", "Resume"] %}
+{% set tab_links = ["/",    "/resume.html"] %}
+
+{% block tabset %}
+{% set current_tab = "" %}
+{% endblock tabset %}
+<html>
+  <head>
+
+  </head>
+  <body>
+    <h1>Asa Zeren's Homepage</h1>
+    <div id="navrow">
+      {% for tab in tabs %}
+        {% if tab == current_tab %}
+          {% set class = "tab" %}
+        {% else %}
+          {% set class = "tab tab-current" %} 
+        {% endif %}
+
+        {% if tab != current_tab %}
+          <a class="tab-link" href="{{tab_links[loop.index0]}}">
+	{% endif %}
+	<span class="{{class}}">{{tab}}</span>
+        {% if tab != current_tab %}
+	  </a>
+	{% endif %}
+
+	{% if not loop.last %}
+          <span class="tabsep">|</span>
+        {% endif %}                  
+      {% endfor %}
+    </div>
+
+    {% block content %}
+    {% endblock content %}
+
+  </body>
+</html>
+
+
+
+  

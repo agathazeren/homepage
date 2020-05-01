@@ -1,0 +1,10 @@
+{% extends "page.html.tera" %}
+
+{% block tabset %}
+{% set current_tab = "Resume" %}
+{% endblock tabset %}
+
+{% block content %}
+Resume coming soon
+{% endblock content %}
+

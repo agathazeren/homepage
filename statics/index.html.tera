@@ -1,0 +1,10 @@
+{% extends "page.html.tera" %}
+
+{% block tabset %}
+  {% set current_tab = "Home" %}
+{% endblock tabset %}
+
+{% block content %}
+  <p>This my new homepage. expansion coming soon!</p>
+{% endblock content %}
+  
