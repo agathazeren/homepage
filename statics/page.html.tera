@@ -1,15 +1,23 @@
-{% set tabs =      ["Home", "Resume"] %}
-{% set tab_links = ["/",    "/resume.html"] %}
+{% set tabs =        ["Home",     "Resume"] %}
+{% set tab_links =   ["/",        "/resume.html"] %}
 
 {% block tabset %}
 {% set current_tab = "" %}
 {% endblock tabset %}
+
+{% if title_override %}
+  {% set title = title_override %}
+{% else %}
+  {% set title = "Homepage" %}
+{% endif %}
+
+
 <html>
   <head>
-
+    <link rel="stylesheet" href="style.css"/>     
   </head>
   <body>
-    <h1>Asa Zeren's Homepage</h1>
+    <h1>Asa Zeren's {{title}}</h1>
     <div id="navrow">
       {% for tab in tabs %}
         {% if tab == current_tab %}

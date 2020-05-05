@@ -2,9 +2,66 @@
 
 {% block tabset %}
 {% set current_tab = "Resume" %}
+{% set title_override = "Resume" %}
 {% endblock tabset %}
 
 {% block content %}
-Resume coming soon
+{% filter markdown %}
+
+## Education
+
+Newton South High School, Newton, MA, Class of 2021
+
+GPA: 4.52 on a 5.0 scale
+
+PSAT: 1470 out of 1520
+
+Coursework has included AP BC Calculus; Honors Computer Science (5 on AP Computer Science A exam), Chemstry,  Biology, and Chinese; Inaugural member of New Media Communities program; three years of visual art.
+
+Student Leadership Council member
+
+### Newton [LigerBots](https://ligerbots.org) [FRC][FRC] Robotics Team (2016/17 - present)
+ - Chief Technical Officer, 2019/20
+    - Selected as technical lead and executive board member for the joint Newton South and Newton North team
+    - Responsible for the design, build, and operations of a 130 lb. competition robot and for over fifty students
+    - Major contributor to the design and [CAD][CAD] of the robot, primary modeler of the carousel (OnShape)
+    - Developed, organized, and ran technical training for new and experienced LigerBots twice weekly for three months
+ - Active contributor to over 30 community outreach activites, 2016/17-present
+ - Team representative, FIRST National Advocacy Conference, Washington D.C., 2019
+    - One of four students to attend trainings on political lobbying and meet with legislators
+ - Leader of the competion pit crew team, 2018/19, 2019/20
+ - Build Leader of the intake subassembly, 2018/19
+    - Led the intake design and assembly team
+    - Primary designer and CAD modeler of the intake subsystem (PTC Creo)
+ - Vice Build Leader of the elevator subassembly, 2017/18
+   - Core contributor to the design, CAD (PTC Creo), manufacturing, and assembly of the elevator on the robot
+ - One of two nominees for the prestigious Dean's List award, 2020
+ - Internal team awards
+    - Outstanding Player, 2019
+    - Outstanding Leadership, 2018
+    - Excellence in Engineering, 2017
+
+## Other Experiences
+
+### Temple Israel Boston (Through 2019)
+ - Attended education programs through tenth grade, culminating in Confirmation, including the Boston-Haifa Connection exchange program
+
+### Middlesex County 4H Fife and Drum Corps (Through 2018)
+ - Long time musician in a youth group dedicated to preserving and performing 18th century music. Performed Colonial Williamsburg, the Boston Tea Party reenactment, Fort George in Canada, etc.. Served as honor guard to the Concord, MA, Patriots and Veterans Day ceremonies
+ - Attended Jr. Fife and Drum Camp music workshop, 2016-2018
+ - Thomas Nixon Award for Outstanding Musicianship as a Fifer, 2015
+
+### Jae Hun Kim Tae-kwon Do Insitite, (Through 2018)
+ - Black Belt, 2018
+
+## Skills
+ - Programming, with particular experience in Rust, and including Swift, Javascript, Python, and others
+ - Parametric CAD in OnShape and PTC Creo
+ - Experience with manual and CNC manufacturing, including metal, plastics, and wood
+
+
+[CAD]: https://cad.onshape.com/documents/091539cc63c6a8b71700456f/w/9da5d1e7b6f1d6a0746c9217/e/da9e8afa5198e7b06f4ae003
+[FRC]: https://www.firstinspires.org/robotics/frc
+{% endfilter %}
 {% endblock content %}
 

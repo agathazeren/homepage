@@ -5,6 +5,8 @@
 {% endblock tabset %}
 
 {% block content %}
-  <p>This my new homepage. expansion coming soon!</p>
+  <p>Welcolme to my homepage! I'm going to be adding more to it soon.</p>
+  <p>Contact me via <a href="mailto:asaizeren@gmail.com">email</a> or visit me on <a href="https://github.com/asa-z">GitHub</a></p>
+  <p>This site's source can be seen at <a href="https://github.com/asa-z/homepage">github.com/asa-z/homepage</a></p>
 {% endblock content %}
   

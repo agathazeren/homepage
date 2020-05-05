@@ -1,7 +1,9 @@
 /target
 
 /built_statics
+/statics/tmp
 
-.#*#
+.#*
+#*#
 *~
 

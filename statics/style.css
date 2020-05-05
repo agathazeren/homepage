@@ -1,0 +1,32 @@
+body {
+    margin-left: 100px;
+    margin-right: 100px;
+    font-family: "Noto Sans", Roboto, sans-serif;
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+	background-color: #f7f7df;
+	color: #14130e;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+	background-color: #212229;
+	color: #e0e0e0;
+    }
+}
+
+p {
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+}
+
+h1 {
+    text-align: center;
+}
+
+#navrow{
+    text-align: center;
+}

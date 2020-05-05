@@ -17,3 +17,4 @@ features = ["serve"]
 
 [build-dependencies]
 tera = "1"
+pulldown-cmark = "0.7"

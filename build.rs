@@ -3,14 +3,23 @@ use std::fs;
 use std::fs::read_dir;
 use std::fs::File;
 use std::io::Write;
-use std::path::Path;
 use std::path::PathBuf;
 use tera::Context;
 use tera::Tera;
+use tera::Value;
+use std::collections::HashMap;
+use pulldown_cmark::{Parser, Options, html};
 
 fn main() {
+    println!("cargo:rerun-if-changed=statics/*");    
+    proccess_statics()
+}
+
+fn proccess_statics() {
     let out_dir = PathBuf::from("built_statics");
+    let tmp_dir = PathBuf::from("statics/tmp");
     let mut tera = Tera::default();
+    initialize_tera(&mut tera);
     let mut files = read_dir("statics")
         .expect("Could not read statics dir")
         .map(|r| r.expect("Bad Direntry"))
@@ -22,6 +31,8 @@ fn main() {
     loop {
         let mut made_progress = false;
         for path in &files {
+	    if path == &tmp_dir { continue }
+	    eprintln!("About to handle path {:?}", &path);
             match path
                 .extension()
                 .expect("All static files should have an extension")
@@ -44,16 +55,19 @@ fn main() {
                             defered.push(path.to_path_buf())
                         }
                         Ok(()) => {
-                            made_progress = true;
-                            let new_path = path.with_extension("");
+                            made_progress = true;      
+                            let mut new_path = tmp_dir.clone();
+			    new_path.push(path.file_name().unwrap());
+			    let new_path = new_path;
                             let rendered = tera
                                 .render(name, &Context::new())
                                 .expect("Error During rendering");
                             let mut file =
                                 File::create(new_path).expect("Error opening target of render");
-                            write!(file, "{}", rendered).expect("Error writing to target of render");
+                            write!(file, "{}", rendered)
+                                .expect("Error writing to target of render");
                         }
-                        Err(e) => panic!("{:#?}", e),        
+                        Err(e) => panic!("{:#?}", e),
                     }
                 }
                 _ => {
@@ -73,4 +87,18 @@ fn main() {
         files.extend(defered);
         defered = Vec::new();
     }
+}
+
+fn initialize_tera(tera: &mut Tera) {
+    tera.register_filter("markdown", markdown_filter);
+}
+
+fn markdown_filter(value: &Value, _: &HashMap<String, Value>) -> tera::Result<Value>{
+    let options = Options::empty();
+
+    let parser = Parser::new_ext(value.as_str().unwrap(), options);
+
+    let mut output = String::new();
+    html::push_html(&mut output, parser);
+    Ok(Value::String(output))
 }
