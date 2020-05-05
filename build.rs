@@ -18,8 +18,8 @@ fn main() {
 fn proccess_statics() {
     let out_dir = PathBuf::from("built_statics");
     let tmp_dir = PathBuf::from("statics/tmp");
-    fs::create_dir(&out_dir);
-    fs::create_dir(&tmp_dir);
+    fs::create_dir(&out_dir).unwrap();
+    fs::create_dir(&tmp_dir).unwrap();
     let mut tera = Tera::default();
     initialize_tera(&mut tera);
     let mut files = read_dir("statics")
