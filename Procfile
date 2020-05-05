@@ -1,1 +1,1 @@
-web: build/release/homepage
+web: target/release/homepage
