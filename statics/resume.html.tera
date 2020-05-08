@@ -8,6 +8,10 @@
 {% block content %}
 {% filter markdown %}
 
+## Contact
+Email (prefered): [asaizeren@gmail.com](mailto:asaizeren@gmail.com)
+GitHub: [https://github.com/asa-z](https://github.com/asa-z)
+
 ## Education
 
 Newton South High School, Newton, MA, Class of 2021
