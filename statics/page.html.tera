@@ -12,7 +12,7 @@
 {% endif -%}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>{{title}} - Asa Zeren</title>
     <link rel="stylesheet" href="style.css"/>     
