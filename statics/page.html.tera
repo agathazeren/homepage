@@ -14,6 +14,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>{{title}} - Asa Zeren</title>
     <link rel="stylesheet" href="style.css"/>     
   </head>
   <body>
