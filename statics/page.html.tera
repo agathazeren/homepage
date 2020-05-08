@@ -18,8 +18,10 @@
     <link rel="stylesheet" href="style.css"/>     
   </head>
   <body>
-    <h1>Asa Zeren's {{title}}</h1>
-    <div id="navrow">
+    <header role="banner">
+      <h1>Asa Zeren's {{title}}</h1>
+    </header>
+    <nav id="navrow" role="navigation">
       {% for tab in tabs -%}
         {% if tab == current_tab -%}
           {% set class = "tab" -%}
@@ -39,10 +41,12 @@
           <span class="tabsep">|</span>
         {%- endif -%}                  
       {% endfor -%}
-    </div>
+    </nav>
 
-    {% block content %}
-    {% endblock content %}
+    <main role="main">
+      {% block content %}
+      {% endblock content %}
+    </main>
 
   </body>
 </html>
