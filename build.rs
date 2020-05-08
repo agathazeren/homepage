@@ -1,3 +1,4 @@
+use std::io;
 use std::default::Default;
 use std::fs;
 use std::fs::read_dir;
@@ -18,8 +19,16 @@ fn main() {
 fn proccess_statics() {
     let out_dir = PathBuf::from("built_statics");
     let tmp_dir = PathBuf::from("statics/tmp");
-    fs::create_dir(&out_dir).unwrap();
-    fs::create_dir(&tmp_dir).unwrap();
+    match fs::create_dir(&out_dir){
+	Ok(()) => {}
+	Err(e) if e.kind() == io::ErrorKind::AlreadyExists => {}
+	Err(e) => panic!("{}",e)
+    }
+    match fs::create_dir(&tmp_dir){
+	Ok(()) => {}
+	Err(e) if e.kind() == io::ErrorKind::AlreadyExists => {}
+	Err(e) => panic!("{}",e)
+    }
     let mut tera = Tera::default();
     initialize_tera(&mut tera);
     let mut files = read_dir("statics")
@@ -59,15 +68,21 @@ fn proccess_statics() {
                         Ok(()) => {
                             made_progress = true;      
                             let mut new_path = tmp_dir.clone();
-			    new_path.push(path.file_name().unwrap());
+			    let new_file_name = path.with_extension("");
+			    dbg!(&new_file_name);
+			    new_path.push(new_file_name.file_name().unwrap());
 			    let new_path = new_path;
+			    if path == &PathBuf::from("statics/index.html.tera") {
+				assert_eq!(new_path, PathBuf::from("statics/tmp/index.html"));
+			    }
                             let rendered = tera
                                 .render(name, &Context::new())
                                 .expect("Error During rendering");
                             let mut file =
-                                File::create(new_path).expect("Error opening target of render");
+                                File::create(&new_path).expect("Error opening target of render");
                             write!(file, "{}", rendered)
                                 .expect("Error writing to target of render");
+			    defered.push(new_path);
                         }
                         Err(e) => panic!("{:#?}", e),
                     }
@@ -80,13 +95,14 @@ fn proccess_statics() {
                 }
             }
         }
+	dbg!(&defered);
         if defered.is_empty() {
             break;
         }
         if !made_progress {
             panic!("Unhandled paths: {:?}", files)
         }
-        files.extend(defered);
+	files = defered.clone();
         defered = Vec::new();
     }
 }
