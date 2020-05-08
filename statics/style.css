@@ -12,6 +12,10 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
+    a:visited {
+	color: #63009c;
+    }
+    
     body {
 	background-color: #212229;
 	color: #e0e0e0;
