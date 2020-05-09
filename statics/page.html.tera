@@ -1,6 +1,8 @@
 {% set tabs =        ["Home",     "Resume"] -%}
 {% set tab_links =   ["/",        "/resume.html"] -%}
 
+{% set is_etc = false %}
+
 {% block tabset -%}
 {% set current_tab = "" -%}
 {% endblock tabset -%}
@@ -14,13 +16,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>{{title}} - Asa Zeren</title>
-    <link rel="stylesheet" href="style.css"/>     
+    <title>{{title}}{% if not is_etc %} - Asa Zeren{%- endif -%}</title>
+    <link rel="stylesheet" href="/style.css"/>
+    <meta name="description" content="{% block description %}{% endblock description %}"/>
   </head>
   <body>
     <header role="banner">
-      <h1>Asa Zeren's {{title}}</h1>
+      <h1>{% if not is_etc -%}Asa Zeren's {% endif %}{{title}}</h1>
     </header>
+    {% if not is_etc %}
     <nav id="navrow" role="navigation">
       {% for tab in tabs -%}
         {% if tab == current_tab -%}
@@ -42,6 +46,7 @@
         {%- endif -%}                  
       {% endfor -%}
     </nav>
+    {% endif %}
 
     <main role="main">
       {% block content %}

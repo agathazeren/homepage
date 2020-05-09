@@ -1,2 +1,2 @@
-rm built_statics/*
-rm statics/tmp/*
+rm -dr built_statics/*
+rm -dr statics/tmp/*

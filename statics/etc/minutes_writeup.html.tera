@@ -1,0 +1,116 @@
+{% extends "page.html.tera" %}
+
+{% block tabset %}
+{% set is_etc = true %}
+{% set title_override = "Meeting Minutes Writeup" %}
+{% endblock tabset %}
+
+{% block content %}
+{% filter markdown %}
+
+During the lang-team triage meeting on May 7, I took real time notes on what was said, the results of which can be found on the [DropBox Paper]. As I (and I think most humans) cannot type at the speed of speach, there were numerous holes I left (annotated with an elipsis in most cases) and I did a bit of paraphrasing. Also, by the end, I was exhausted from the work, and this can be seen in the completeness of the notes, or rather, lack thereof.
+
+Once the video description was posted, I went back throught the notes and filled in the gaps in my notes for about the first 10 minutes. This was extremely tedious, and took aproximatly a x4 time penalty.
+
+It was at this point I confirmed my belief that this was an unsustainable strategy for note taking.
+
+I then took notes on the next ~20 minutes of the meeting recording in a different manner, which I found much easier to do, and will probably be more helpful. I envision this being inline in the meeting agenda.
+
+<aside>
+  As a side note, the agenda document is very disorganized, and could do with some cleanup.
+  <aside>
+    Also, I don't really like DropBox Paper, but do not have a suitable alternative to put forward at this time, so I rest that case.
+  </aside>
+</aside>
+
+At this time, I think that someone should take notes like the following inline to the meeting agenda. Much less detailed notes are already being taken, but having a dedicated note taker will allow much more helpful and detailed notes to be taken. 
+
+<blockquote>
+* 71599 Cooertion Between Functions and non-capturing closures
+Nominated by @NM.
+Background by @NM: 
+At some point an extension: Write closure notation and get out a function ptr
+(if closure donesn't capture)
+You have to do this in a fairly limited way. -> has to be triggered by expected type
+
+```rust
+let x: fn() = || {}; //works
+
+
+let c = ||{};
+let x = c as fn(); //doesn't work
+
+//this is what the pr is fixing: 
+fn foo() {}
+fn bar() {}
+let xs = [foo, bar, || ()]; //does nto type check
+                     // as fn() would make it work, though
+                     // or type ascription on xs
+```
+
+This is strictly backwards compatible.
+
+Simplifying what you have to type, even though it would be possible before. (slightly better?)
+
+The value would be avalible as both a closure type and a fn ptr. 
+
+Goal: Closures can always be cooerced to fn ptrs
+
+Consensus of above.
+
+Result: FCP Merge (and unnominated)
+
+** More fn conversions (spinoff)
+
+Converting between abis. 
+
+(Though it interacts with ffi unwind, and would influnce the behavior the other way)
+
+unsafe { unsafe fn into a fn }?
+
+* 71607 Clarify the interaction of Pin + Drop guarentee and panics
+
+Does Pin make this different than in the non-Pin?
+
+Cases of where you don't call destructur -> bad things. 
+
+If something is on the stack and doesn't get destroyed, and then the stack keeps going.
+
+Solution?: abort on panic in Drops
+
+- breaking
+
+- can't lint
+
+- changes standard library over edition
+
+- How much is this relied on? In this case abort is the only option. 
+
+Should user be aborting or rust?
+
+- User: safety issue
+
+- Rust: What are the criteria?
+
+Call a user provided funtion instead (-> !) to allow cover. 
+
+Heap Data: if leak, and used after leaked, then it's fine
+
+Stack: Can't leak. if you fail to free you must declare the stack dead (abort)
+
+Senario: async operation will write in the buffer. But there is a panic, and the drop of the buffer panics, so the request to stop the copying into the buffer isn't stoped. 
+
+Result: 
+
+Beyond the scope of the triage meeting.
+
+continue the disscussion, either async or qued for sync. 
+
+** DONE Ping Taylor and prep for next time
+
+</blockquote>
+
+
+[DropBox Paper]: https://paper.dropbox.com/doc/T-Lang-Meeting-Current-meeting--Azknue~hJoyiokjwdoZMr7r7Ag-nRfrSxCbfeo9q7fEYogZQ#:uid=813925494965393040402773&h2=Notes-from-May-7-2020
+{% endfilter %}
+{% endblock content %}

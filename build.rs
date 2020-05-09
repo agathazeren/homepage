@@ -1,49 +1,62 @@
-use std::io;
+use std::path::{Path, Component};
+use pulldown_cmark::{html, Options, Parser};
+use std::collections::HashMap;
 use std::default::Default;
 use std::fs;
 use std::fs::read_dir;
 use std::fs::File;
+use std::io;
 use std::io::Write;
 use std::path::PathBuf;
 use tera::Context;
 use tera::Tera;
 use tera::Value;
-use std::collections::HashMap;
-use pulldown_cmark::{Parser, Options, html};
+use std::ffi::OsStr;
 
 fn main() {
-    println!("cargo:rerun-if-changed=statics/*");    
+    println!("cargo:rerun-if-changed=statics/*");
     proccess_statics()
 }
 
 fn proccess_statics() {
     let out_dir = PathBuf::from("built_statics");
     let tmp_dir = PathBuf::from("statics/tmp");
-    match fs::create_dir(&out_dir){
-	Ok(()) => {}
-	Err(e) if e.kind() == io::ErrorKind::AlreadyExists => {}
-	Err(e) => panic!("{}",e)
+    match fs::create_dir(&out_dir) {
+        Ok(()) => {}
+        Err(e) if e.kind() == io::ErrorKind::AlreadyExists => {}
+        Err(e) => panic!("{}", e),
     }
-    match fs::create_dir(&tmp_dir){
-	Ok(()) => {}
-	Err(e) if e.kind() == io::ErrorKind::AlreadyExists => {}
-	Err(e) => panic!("{}",e)
+    match fs::create_dir(&tmp_dir) {
+        Ok(()) => {}
+        Err(e) if e.kind() == io::ErrorKind::AlreadyExists => {}
+        Err(e) => panic!("{}", e),
     }
     let mut tera = Tera::default();
     initialize_tera(&mut tera);
-    let mut files = read_dir("statics")
-        .expect("Could not read statics dir")
-        .map(|r| r.expect("Bad Direntry"))
-        .map(|d| d.path())
-        .filter(|p| !p.to_str().unwrap().contains(&"#"))
-        .filter(|p| !p.to_str().unwrap().ends_with(&"~"))
-        .collect::<Vec<PathBuf>>();
+    fn files_of_dir<P: AsRef<Path>>(path: P) -> Vec<PathBuf> {
+        read_dir(path)
+            .expect("Could not read dir")
+            .map(|r| r.expect("Bad Direntry"))
+            .map(|d| d.path())
+            .filter(|p| !p.to_str().unwrap().contains(&"#"))
+            .filter(|p| !p.to_str().unwrap().ends_with(&"~"))
+            .collect::<Vec<PathBuf>>()
+    }
+    let mut files = files_of_dir("statics");
     let mut defered: Vec<PathBuf> = vec![];
     loop {
         let mut made_progress = false;
         for path in &files {
-	    if path == &tmp_dir { continue }
-	    eprintln!("About to handle path {:?}", &path);
+            if path == &tmp_dir {
+                continue;
+            }
+            if path.is_dir() {
+                defered.extend(files_of_dir(path));
+                made_progress = true;
+                continue;
+            }
+
+            eprintln!("About to handle path {:?}", &path);
             match path
                 .extension()
                 .expect("All static files should have an extension")
@@ -66,15 +79,17 @@ fn proccess_statics() {
                             defered.push(path.to_path_buf())
                         }
                         Ok(()) => {
-                            made_progress = true;      
+                            made_progress = true;
                             let mut new_path = tmp_dir.clone();
-			    let new_file_name = path.with_extension("");
-			    dbg!(&new_file_name);
-			    new_path.push(new_file_name.file_name().unwrap());
-			    let new_path = new_path;
-			    if path == &PathBuf::from("statics/index.html.tera") {
-				assert_eq!(new_path, PathBuf::from("statics/tmp/index.html"));
+                            for component in path.with_extension("").components().skip(1){
+				new_path.push(component);
 			    }
+                            dbg!(&new_path);
+                            let new_path = new_path;
+			    fs::create_dir_all(new_path.parent().unwrap()).unwrap();
+                            if path == &PathBuf::from("statics/index.html.tera") {
+                                assert_eq!(new_path, PathBuf::from("statics/tmp/index.html"));
+                            }
                             let rendered = tera
                                 .render(name, &Context::new())
                                 .expect("Error During rendering");
@@ -82,27 +97,36 @@ fn proccess_statics() {
                                 File::create(&new_path).expect("Error opening target of render");
                             write!(file, "{}", rendered)
                                 .expect("Error writing to target of render");
-			    defered.push(new_path);
+                            defered.push(new_path);
                         }
                         Err(e) => panic!("{:#?}", e),
                     }
                 }
                 _ => {
                     println!("{:?}", path);
-                    fs::copy(&*path, out_dir.join(path.file_name().unwrap()))
+		    let mut out_path = out_dir.clone();
+		    for component in path.components().skip(1) {
+                        if component == Component::Normal(OsStr::new("tmp")) {
+			    continue
+			}
+			out_path.push(component);
+		    }
+		    dbg!(&out_path);
+		    fs::create_dir_all(out_path.parent().unwrap()).unwrap();
+                    fs::copy(&*path, out_path)
                         .expect("Copying a file failed");
                     made_progress = true;
                 }
             }
         }
-	dbg!(&defered);
+        dbg!(&defered);
         if defered.is_empty() {
             break;
         }
         if !made_progress {
             panic!("Unhandled paths: {:?}", files)
         }
-	files = defered.clone();
+        files = defered.clone();
         defered = Vec::new();
     }
 }
@@ -111,7 +135,7 @@ fn initialize_tera(tera: &mut Tera) {
     tera.register_filter("markdown", markdown_filter);
 }
 
-fn markdown_filter(value: &Value, _: &HashMap<String, Value>) -> tera::Result<Value>{
+fn markdown_filter(value: &Value, _: &HashMap<String, Value>) -> tera::Result<Value> {
     let options = Options::empty();
 
     let parser = Parser::new_ext(value.as_str().unwrap(), options);
