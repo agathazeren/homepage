@@ -26,11 +26,14 @@ I then took notes on the next ~20 minutes of the meeting recording in a differen
 At this time, I think that someone should take notes like the following inline to the meeting agenda. Much less detailed notes are already being taken, but having a dedicated note taker will allow much more helpful and detailed notes to be taken. 
 
 <blockquote>
-* 71599 Cooertion Between Functions and non-capturing closures
-Nominated by @NM.
+* 71599 Coercion Between Functions and non-capturing closures
+
 Background by @NM: 
+
 At some point an extension: Write closure notation and get out a function ptr
+
 (if closure donesn't capture)
+
 You have to do this in a fairly limited way. -> has to be triggered by expected type
 
 ```rust
