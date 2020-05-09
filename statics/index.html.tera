@@ -6,7 +6,7 @@
 
 {% block content %}
   <p>Welcolme to my homepage! This page is a work in progress.</p>
-  <p>Contact me via <a href="mailto:asaizeren@gmail.com">email</a> or visit me on <a href="https://github.com/asa-z">GitHub</a></p>
+  <p>Contact me via <a href="mailto:asaizeren@gmail.com">email</a> or <a href="https://matrix.to/#/@powerofzero:matrix.org">Matrix</a> at or visit me on <a href="https://github.com/asa-z">GitHub</a>.</p>
   <p>This site's source can be seen at <a href="https://github.com/asa-z/homepage">github.com/asa-z/homepage</a></p>
 {% endblock content %}
   
