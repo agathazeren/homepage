@@ -36,6 +36,10 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    font-variant: small-caps;
+}
+
 #navrow {
     text-align: center;
 }
@@ -44,6 +48,7 @@ h1 {
 .tab {
     margin-left: 5px;
     margin-right: 5px;
+    font-variant: small-caps;
 }
 
 .tab:not(:first-child):before {
