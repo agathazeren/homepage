@@ -28,23 +28,21 @@
     <nav id="navrow" role="navigation">
       {% for tab in tabs -%}
         {% if tab == current_tab -%}
-          {% set class = "tab" -%}
+          {% set class = "tab tab-current" -%}
         {% else -%}
-          {% set class = "tab tab-current" -%} 
+          {% set class = "tab" -%} 
         {% endif -%}
 
-        {% if tab != current_tab -%}
-          <a class="tab-link" href="{{tab_links[loop.index0]}}">
+        <span class="{{class}}">
+        {%- if tab != current_tab -%}
+          <a href="{{tab_links[loop.index0]}}">
 	{%- endif -%}
-	<span class="{{class}}">{{tab}}</span>
+	{{tab}}
         {%- if tab != current_tab -%}
 	  </a>
 	{%- endif -%}
-
-	{% if not loop.last -%}
-          <span class="tabsep">|</span>
-        {%- endif -%}                  
-      {% endfor -%}
+        </span>
+      {%- endfor -%}
     </nav>
     {% endif %}
 

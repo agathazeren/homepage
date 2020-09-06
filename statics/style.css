@@ -1,25 +1,30 @@
+@media (prefers-color-scheme: light) {
+    :root {
+	--bg-color: #f7f7df;
+	--text-color: #14130e;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    body {
+	--bg-color: #212229;
+	--text-color: #e0e0e0;
+    }
+}
+
 body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
     margin-left: 100px;
     margin-right: 100px;
     font-family: "Noto Sans", Roboto, sans-serif;
 }
 
-@media (prefers-color-scheme: light) {
-    body {
-	background-color: #f7f7df;
-	color: #14130e;
-    }
+a, a:visited {
+    color: var(--text-color);
 }
 
-@media (prefers-color-scheme: dark) {
-    a:visited {
-	color: #63009c;
-    }
-    
-    body {
-	background-color: #212229;
-	color: #e0e0e0;
-    }
+a:visited {
+    text-decoration-style: dotted;
 }
 
 p {
@@ -31,12 +36,26 @@ h1 {
     text-align: center;
 }
 
-#navrow{
+#navrow {
     text-align: center;
 }
+
 
 .tab {
     margin-left: 5px;
     margin-right: 5px;
 }
 
+.tab:not(:first-child):before {
+    content: "\25C8";
+    position: relative;
+    right: 5px;
+}
+
+.tab a {
+    text-decoration: none;
+}
+
+.tab a:hover {
+    text-decoration: underline;
+}
