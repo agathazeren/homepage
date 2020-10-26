@@ -22,7 +22,7 @@
   </head>
   <body>
     <header role="banner">
-      <h1>{% if not is_etc -%}Asa Zeren's {% endif %}{{title}}</h1>
+      <h1>{{title}}{% if not is_etc %} - Asa Zeren{% endif %}</h1>
     </header>
     {% if not is_etc %}
     <nav id="navrow" role="navigation">

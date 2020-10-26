@@ -44,6 +44,11 @@ h2 {
     text-align: center;
 }
 
+@media (print) {
+    #navrow {
+        display:none;
+    }
+}
 
 .tab {
     margin-left: 5px;
