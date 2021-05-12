@@ -1,3 +1,3 @@
 [submodule "merry_war"]
 	path = merry_war
-	url = git@git.sr.ht:~powerofzero/merry_war
+	url = https://git.sr.ht/~powerofzero/merry_war
