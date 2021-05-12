@@ -157,14 +157,7 @@ fn merry_war() {
 
     dbg!("about to run ink");
 
-    let which = Command::new("which")
-        .arg("inklecate")
-        .output()
-        .expect("which failed");
-
-    dbg!(which);
-    
-    let status = Command::new("inklecate")
+    let status = Command::new("/usr/bin/inklecate")
         .arg("-j")
         .arg("merry_war/merry_war.ink")
         .output()
