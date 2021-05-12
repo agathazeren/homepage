@@ -1,3 +1,6 @@
+#![feature(command_access)]
+
+
 use std::path::{Path, Component};
 use pulldown_cmark::{html, Options, Parser};
 use std::collections::HashMap;
