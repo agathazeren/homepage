@@ -160,6 +160,7 @@ fn merry_war() {
     // {"issues":[]}{"export-complete": true}"#);
 
     let json = std::fs::read("merry_war/merry_war.ink.json").expect("ink compileation failed");
+    std::fs::create_dir("built_statics/merry_war");
     let mut js_file = File::create("built_statics/merry_war/merry_war.js").expect("creating merry war js file failed");
 
     js_file.write(b"var storyContent = ").expect("writing to merry_war.js failed");
