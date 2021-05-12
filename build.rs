@@ -150,12 +150,14 @@ fn markdown_filter(value: &Value, _: &HashMap<String, Value>) -> tera::Result<Va
 fn merry_war() {
     use std::process::Command;
     
-    let _status = Command::new("inklecate")
-    //    .arg("-j")
-    //.arg("merry_war/merry_war.ink")
+    let status = Command::new("inklecate")
+        .arg("-j")
+        .arg("merry_war/merry_war.ink")
         .output()
         .expect("Failed to compile merry_war");
 
+    println!(status)
+    
     // assert_eq!(status, r#"{"compile-success": true}
     // {"issues":[]}{"export-complete": true}"#);
 
