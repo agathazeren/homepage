@@ -15,7 +15,8 @@ use std::ffi::OsStr;
 
 fn main() {
     println!("cargo:rerun-if-changed=statics/*");
-    proccess_statics()
+    proccess_statics();
+    merry_war();
 }
 
 fn proccess_statics() {
@@ -143,4 +144,29 @@ fn markdown_filter(value: &Value, _: &HashMap<String, Value>) -> tera::Result<Va
     let mut output = String::new();
     html::push_html(&mut output, parser);
     Ok(Value::String(output))
+}
+
+
+fn merry_war() {
+    use std::process::Command;
+    
+    let _status = Command::new("inklecate")
+        .arg("-j")
+        .arg("merry_war/merry_war.ink")
+        .output()
+        .expect("Failed to compile merry_war");
+
+    // assert_eq!(status, r#"{"compile-success": true}
+    // {"issues":[]}{"export-complete": true}"#);
+
+    let json = std::fs::read("merry_war/merry_war.ink.json").expect("ink compileation failed");
+    let mut js_file = File::create("built_statics/merry_war/merry_war.js").expect("creating merry war js file failed");
+
+    js_file.write(b"var storyContent = ").expect("writing to merry_war.js failed");
+    js_file.write(&json).expect("wriging json failed");
+
+    for file in &["index.html", "main.js", "ink.js", "style.css"] {
+        std::fs::copy(&format!("merry_war/{}", file), &format!("built_statics/merry_war/{}", file)).expect("copying merry war file failed");
+    }
+
 }

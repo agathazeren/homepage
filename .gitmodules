@@ -1,0 +1,3 @@
+[submodule "merry_war"]
+	path = merry_war
+	url = /home/wsl/hw/shakespeare/merry_war
