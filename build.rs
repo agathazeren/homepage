@@ -158,8 +158,8 @@ fn merry_war() {
     dbg!("about to run ink");
 
     let status = Command::new("/usr/bin/inklecate")
-        .arg("-j")
-        .arg("merry_war/merry_war.ink")
+        //.arg("-j")
+        //.arg("merry_war/merry_war.ink")
         .output()
         .expect("Failed to compile merry_war");
 
