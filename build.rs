@@ -151,8 +151,8 @@ fn merry_war() {
     use std::process::Command;
     
     let _status = Command::new("inklecate")
-        .arg("-j")
-        .arg("merry_war/merry_war.ink")
+    //    .arg("-j")
+    //.arg("merry_war/merry_war.ink")
         .output()
         .expect("Failed to compile merry_war");
 
