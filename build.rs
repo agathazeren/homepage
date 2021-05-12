@@ -156,13 +156,19 @@ fn merry_war() {
     dbg!(std::fs::read("merry_war/merry_war.ink"));
 
     dbg!("about to run ink");
+
+    let which = Command::new("which")
+        .arg("inklecate")
+        .output()
+        .expect("which failed");
+
+    dbg!(which);
     
-    let status = Command::new("inklecate");
-    dbg!(status.get_program());
-        // .arg("-j")
-        // .arg("merry_war/merry_war.ink")
-        // .output()
-        // .expect("Failed to compile merry_war");
+    let status = Command::new("inklecate")
+        .arg("-j")
+        .arg("merry_war/merry_war.ink")
+        .output()
+        .expect("Failed to compile merry_war");
 
     eprintln!("{:?}", status);
     
