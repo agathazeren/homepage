@@ -156,7 +156,7 @@ fn merry_war() {
         .output()
         .expect("Failed to compile merry_war");
 
-    println!(status)
+    println!(status);
     
     // assert_eq!(status, r#"{"compile-success": true}
     // {"issues":[]}{"export-complete": true}"#);
