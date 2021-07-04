@@ -19,7 +19,7 @@ use std::ffi::OsStr;
 fn main() {
     println!("cargo:rerun-if-changed=statics/*");
     proccess_statics();
-    merry_war();
+//    merry_war();
 }
 
 fn proccess_statics() {
