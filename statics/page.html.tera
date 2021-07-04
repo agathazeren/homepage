@@ -16,13 +16,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>{{title}}{% if not is_etc %} - Asa Zeren{%- endif -%}</title>
+    <title>{{title}}{% if not is_etc %} - Agatha Zeren{%- endif -%}</title>
     <link rel="stylesheet" href="/style.css"/>
     <meta name="description" content="{% block description %}{% endblock description %}"/>
   </head>
   <body>
     <header role="banner">
-      <h1>{{title}}{% if not is_etc %} - Asa Zeren{% endif %}</h1>
+      <h1>{{title}}{% if not is_etc %} - Agatha Zeren{% endif %}</h1>
     </header>
     {% if not is_etc %}
     <nav id="navrow" role="navigation">
