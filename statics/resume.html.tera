@@ -11,22 +11,27 @@
 ## Contact
 Email (preferred): [agatha@zeren.com](mailto:agatha@zeren.com)
 
-## Education
+## Formal Education
 
 - Newton South High School, Newton, MA, Class of 2021
     - Student Leadership Council member
-- Worcester Polytechnic Institute, Class of 2025
+- Worcester Polytechnic Institute, Class of 2026 (Upcoming)
 
-### Newton [LigerBots](https://ligerbots.org) [FRC][FRC] Robotics Team (2016/17 - present)
+## [Tivnu: Building Justice](https://www.tivnu.org) Gap Year (August 2021 - May 2022)
+- Lived in a house with ten other 17-19 year olds and one 24 year old resident advisor in Portland, OR
+- Teacher's assistant in the machine shop at Alliance High School at Meek, 3 days/week
+- Construction for Portland area non-profits with Tivnu, 1 day/week
+- Participated in Jewish and social justice educational programming 2 times/week
+
+## Newton [LigerBots](https://ligerbots.org) [FRC][FRC] Robotics Team (2016/17 - 2021)
 - Exec Emeritus, Game Design Challenge Co-lead, 2020/21
     - Game Design Challenge Engineering Design Award
-- Core member of the award winning Fall 2020 CheesyCAD design challenge team
 - Chief Technical Officer, 2019/20
     - Technical lead and executive board member for the award-winning joint Newton South and Newton North team
     - Responsible for the design, build, and operations of a 130 lb. competition robot and for over 50 students
     - Major contributor to the design and [CAD][CAD] of the robot, primary modeler of the carousel (OnShape)
     - Developed, organized, and ran technical training for new and experienced LigerBots twice weekly for three months
-- Active contributor to over 30 community outreach activities, 2016/17-present
+- Active contributor to over 30 community outreach activities, 2016/17-21
     - Ran competition pits for elementary and middle school FLL robotics competition, 2018, 2019
  - Team representative, FIRST National Advocacy Conference, Washington D.C., 2019
     - One of four students to attend trainings on political lobbying and meet with legislators
@@ -35,11 +40,11 @@ Email (preferred): [agatha@zeren.com](mailto:agatha@zeren.com)
     - Led the intake design and assembly team
     - Primary designer and CAD modeler of the intake subsystem (PTC Creo)
  - Vice Build Leader of the elevator subassembly, 2017/18
-   - Core contributor to the design, CAD (PTC Creo), manufacturing, and assembly of the elevator on the robot
+- Core contributor to the design, CAD (PTC Creo), manufacturing, and assembly of the elevator on the robot
 
-## Work and Volunteer Experiences
+## Other Work and Volunteer Experiences
 
-### cAMP (Summer 2020)
+### cAMP, Summer 2020
  - Teacher of 5 two-week STEM classes at student-led virtual summer camp for elementary students created in response to COVID-19
  - Developed curricula for and taught courses to 8-10 students on programming (Swift), simple machines, and CAD (OnShape)
 
@@ -47,9 +52,8 @@ Email (preferred): [agatha@zeren.com](mailto:agatha@zeren.com)
  - Designed layout in CSS  and Jinja2 templating for client's online poker implementation
 
 ### Temple Israel, Boston
- - Education program participant (2012-2019), culminating in Confirmation
+ - Education program participant (2012-2019), culminating in Confirmation (2019)
  - Boston-Haifa Connection exchange program (2018)
- - Raised $1000 of in-kind donations for Family Table food bank (2014)
 
 ### Middlesex County 4H Fife and Drum Corps (2011-2018)
  - Long-time musician in a youth group dedicated to preserving and performing 18Th century music. Performed at Colonial Williamsburg, the Boston Tea Party reenactment, Fort George in Canada, etc.. Served as honor guard to the Concord, MA, Patriots and Veterans Day ceremonies
@@ -60,14 +64,13 @@ Email (preferred): [agatha@zeren.com](mailto:agatha@zeren.com)
 - Commonwealth of Massachusetts John and Abigail Adams Scholarship for high academic achievement.
 - National Merit Scholarship Letter of Commendation
 - One of two LigerBots nominees for the prestigious FIRST Robotics Dean's List award, 2020
-- LigerBots Internal team awards
-    - Outstanding Player, 2019
-    - Outstanding Leadership, 2018
-    - Excellence in Engineering, 2017
+- LigerBots Internal team awards: Lifetime Achievement, 2021; Outstanding Player, 2019; Outstanding Leadership, 2018; Excellence in Engineering, 2017;
 - Thomas Nixon Award for Outstanding Musicianship as a Fifer, 2015
 
 ## Athletics
-- Calvin Chin's Martial Arts Academy, (May 2021-present)
+- Flying Tortoise Kung Fu, (October 2021-May 2022)
+    - Baguazhang and Xuanlongquan internal gong fu.
+- Calvin Chin's Martial Arts Academy, (May 2021-August 2021)
     - Introductory Hung Gaar Kung Fu
 - Community Rowing, Inc. (June 2020-Oct 2020)
     - Novice sculling
@@ -77,12 +80,9 @@ Email (preferred): [agatha@zeren.com](mailto:agatha@zeren.com)
 ## Skills
  - Programming, with a particular interest in language design, and experience in Rust, Zig, Swift, JavaScript, Python, and others
  - Parametric CAD in OnShape and PTC Creo
-- Experience with manual and CNC manufacturing, including metal, plastics, and wood
-- Mandarin Chinese, intermediate proficiency
-
+ - Experience with manual and CNC manufacturing, including metal, plastics, and wood
 
 [CAD]: https://cad.onshape.com/documents/091539cc63c6a8b71700456f/w/9da5d1e7b6f1d6a0746c9217/e/da9e8afa5198e7b06f4ae003
 [FRC]: https://www.firstinspires.org/robotics/frc
 {% endfilter %}
 {% endblock content %}
-
