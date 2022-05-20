@@ -14,9 +14,13 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
+    font-family: "Noto Sans", Roboto, sans-serif;
+}
+
+main {
     margin-left: 100px;
     margin-right: 100px;
-    font-family: "Noto Sans", Roboto, sans-serif;
+    width: 100ch;
 }
 
 a, a:visited {
