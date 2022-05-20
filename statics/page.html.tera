@@ -34,13 +34,7 @@
         {% endif -%}
 
         <span class="{{class}}">
-        {%- if tab != current_tab -%}
-          <a href="{{tab_links[loop.index0]}}">
-	{%- endif -%}
-	{{tab}}
-        {%- if tab != current_tab -%}
-	  </a>
-	{%- endif -%}
+          <a href="{{tab_links[loop.index0]}}">{{tab}}</a>
         </span>
       {%- endfor -%}
     </nav>
